@@ -20,8 +20,7 @@
   html, body {
     height: 100%;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    background: var(--bg); color: var(--text);
   }
 
   header {
@@ -166,7 +165,6 @@
 
   /* ── TABU ── */
   .tabu-tab-layout { height: 100%; min-height: 0; display: flex; flex-direction: column; gap: 14px; }
-
   .tabu-setup {
     display: flex; flex-direction: column; align-items: center;
     justify-content: center; flex: 1; gap: 20px; overflow-y: auto;
@@ -193,17 +191,13 @@
   }
   .tabu-opt-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
   .tabu-opt-btn:hover:not(.active) { border-color: var(--secondary); }
-
-  .tabu-team-names {
-    display: flex; flex-direction: column; gap: 8px; margin-top: 12px;
-  }
+  .tabu-team-names { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
   .tabu-team-name-input {
     border: 1.5px solid #f0dada; border-radius: 8px;
     padding: 7px 12px; font-size: 0.88rem; font-family: inherit;
     outline: none; width: 100%; transition: border 0.18s;
   }
   .tabu-team-name-input:focus { border-color: var(--primary); }
-
   .tabu-wordlist-btns { display: flex; flex-direction: column; gap: 8px; }
   .tabu-wordlist-btn {
     border: 2px solid #f0dada; background: white; border-radius: 10px;
@@ -212,7 +206,6 @@
   }
   .tabu-wordlist-btn.active { background: #fdf0f0; border-color: var(--primary); color: var(--primary); }
 
-  /* Game */
   .tabu-game { display: none; flex-direction: column; height: 100%; gap: 12px; }
   .tabu-scoreboard { display: flex; gap: 10px; flex-shrink: 0; }
   .tabu-team-score {
@@ -224,6 +217,7 @@
   .tabu-team-score .team-name { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
   .tabu-team-score .team-points { font-size: 2rem; font-weight: 900; color: var(--primary); }
   .tabu-team-score .team-round { font-size: 0.75rem; color: var(--muted); }
+
   .tabu-main { flex: 1; display: flex; gap: 14px; min-height: 0; }
   .tabu-word-stage {
     flex: 1; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
@@ -234,7 +228,7 @@
   .tabu-timer-display {
     position: absolute; top: 12px; right: 24px;
     font-size: 3.5rem; font-weight: 900; color: var(--primary);
-    font-variant-numeric: tabular-nums; transition: color 0.3s; line-height: 1;
+    font-variant-numeric: tabular-nums; line-height: 1;
   }
   .tabu-timer-display.urgent { color: #ff4d6d; animation: pulse 0.5s ease-in-out infinite alternate; }
   @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.12); } }
@@ -243,11 +237,18 @@
     background: linear-gradient(135deg, #e63946, #f4a261);
     border-radius: 24px; padding: 80px 64px; text-align: center;
     box-shadow: 0 12px 48px rgba(230,57,70,0.25);
-    max-width: 700px; width: 100%; transition: all 0.25s;
+    max-width: 700px; width: 100%; min-height: 320px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.25s;
   }
   .tabu-word-box.correct { background: linear-gradient(135deg, #43d9ad, #34d399); transform: scale(1.03); }
   .tabu-word-box.skip { background: linear-gradient(135deg, #888, #aaa); }
-  .tabu-current-word { font-size: 6rem; font-weight: 900; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.2); line-height: 1.1; }
+  .tabu-current-word {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 900; color: white;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    line-height: 1.2; word-break: break-word;
+  }
 
   .tabu-word-actions { display: flex; gap: 16px; margin-top: 28px; }
   .tabu-correct-btn {
@@ -279,17 +280,12 @@
   /* Countdown overlay */
   #tabuCountdownOverlay {
     display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.75); z-index: 100;
-    align-items: center; justify-content: center;
-    backdrop-filter: blur(6px);
+    background: rgba(0,0,0,0.80); z-index: 100;
+    align-items: center; justify-content: center; backdrop-filter: blur(6px);
   }
   #tabuCountdownOverlay.show { display: flex; }
-  .countdown-box {
-    text-align: center; color: white;
-  }
-  .countdown-team-label {
-    font-size: 1.4rem; font-weight: 700; opacity: 0.85; margin-bottom: 12px;
-  }
+  .countdown-box { text-align: center; color: white; }
+  .countdown-team-label { font-size: 1.4rem; font-weight: 700; opacity: 0.85; margin-bottom: 12px; }
   .countdown-number {
     font-size: 10rem; font-weight: 900; line-height: 1;
     animation: countPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
@@ -404,10 +400,12 @@
   .winner-label { font-size: 0.9rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
   .winner-name { font-size: 2.8rem; font-weight: 900; color: var(--primary); margin-bottom: 22px; line-height: 1.1; }
   .winner-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
   #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: #2d2d2d; color: white; padding: 11px 22px; border-radius: 50px; font-size: 0.88rem; font-weight: 600; z-index: 999; transition: transform 0.3s ease; pointer-events: none; }
   #toast.show { transform: translateX(-50%) translateY(0); }
   .confetti-piece { position: fixed; pointer-events: none; z-index: 200; animation: confettiFall linear forwards; }
   @keyframes confettiFall { 0% { opacity: 1; transform: translateY(0) rotate(0deg); } 100% { opacity: 0; transform: translateY(100vh) rotate(720deg); } }
+
   @media (max-width: 700px) {
     .wheel-tab-layout, .cards-tab-layout, .tabu-setup-grid { grid-template-columns: 1fr; }
     main { height: auto; overflow: auto; }
@@ -510,11 +508,9 @@
   <!-- TABU -->
   <div id="tab-tabu" class="tab-content">
     <div class="tabu-tab-layout">
-
       <div class="tabu-setup" id="tabuSetup">
         <h2>🎮 Tabu</h2>
         <div class="tabu-setup-grid">
-
           <div class="tabu-setup-box">
             <h3>Teams & Namen</h3>
             <div class="tabu-option-btns">
@@ -529,7 +525,6 @@
               <input class="tabu-team-name-input" data-team="3" type="text" placeholder="Team 4" maxlength="20" style="display:none">
             </div>
           </div>
-
           <div class="tabu-setup-box">
             <h3>Runden</h3>
             <div class="tabu-option-btns">
@@ -538,7 +533,6 @@
               <button class="tabu-opt-btn" data-type="rounds" data-val="4" onclick="setTabuOption('rounds',4,this)">4</button>
             </div>
           </div>
-
           <div class="tabu-setup-box">
             <h3>Zeit pro Runde</h3>
             <div class="tabu-option-btns">
@@ -547,16 +541,13 @@
               <button class="tabu-opt-btn" data-type="timer" data-val="180" onclick="setTabuOption('timer',180,this)">3'</button>
             </div>
           </div>
-
         </div>
-
         <div class="tabu-setup-box" style="max-width:760px;width:100%">
           <h3>Wortliste</h3>
           <div class="tabu-wordlist-btns">
             <button class="tabu-wordlist-btn active" onclick="setTabuWordlist('english',this)">🇬🇧 English – Allgemeine Begriffe</button>
           </div>
         </div>
-
         <button class="btn btn-primary" style="font-size:1.1rem;padding:16px 48px;border-radius:50px" onclick="startTabuGame()">🎮 Spiel starten!</button>
       </div>
 
@@ -580,7 +571,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -712,7 +702,7 @@
     <div class="round-score" id="tabuRoundOverlayScore"></div>
     <p id="tabuRoundOverlayText"></p>
     <div class="next-team" id="tabuRoundOverlayNext"></div>
-    <button class="btn btn-primary" style="width:100%" id="tabuRoundOverlayBtn" onclick="continueTabuGame()">▶️ Weiter</button>
+    <button class="btn btn-primary" style="width:100%" id="tabuRoundOverlayBtn">▶️ Weiter</button>
   </div>
 </div>
 
@@ -851,14 +841,12 @@ let currentWinner = null;
 let wheelAngle = 0;
 const STORAGE_KEY = 'klassenrad_v1';
 
-// Cards
 let cardMode = 'volunteer';
 let cardPool = [];
 let cardIndex = 0;
 let doneStudents = [];
 let remainingStudents = [];
 
-// Tabu
 let tabuSettings = { teams:2, rounds:2, timer:120, wordlist:'english' };
 let tabuGameState = null;
 let tabuTimerInterval = null;
@@ -870,35 +858,39 @@ const COLORS = [
 ];
 
 // ── AUDIO ──────────────────────────────────────────────────────
+let _audioCtx = null;
+function getAudioCtx() {
+  if(!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if(_audioCtx.state === 'suspended') _audioCtx.resume();
+  return _audioCtx;
+}
+
 function playBuzzer() {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // Three descending beeps
-    [0, 0.25, 0.5].forEach((delay, i) => {
+    const ctx = getAudioCtx();
+    [0, 0.3, 0.6].forEach((delay, i) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.frequency.value = 440 - i * 80;
-      osc.type = 'square';
-      gain.gain.setValueAtTime(0.3, ctx.currentTime + delay);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.2);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.value = 300 - i * 60;
+      osc.type = 'sawtooth';
+      gain.gain.setValueAtTime(0.4, ctx.currentTime + delay);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.25);
       osc.start(ctx.currentTime + delay);
-      osc.stop(ctx.currentTime + delay + 0.25);
+      osc.stop(ctx.currentTime + delay + 0.3);
     });
   } catch(e) {}
 }
 
 function playBeep() {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const ctx = getAudioCtx();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
+    osc.connect(gain); gain.connect(ctx.destination);
     osc.frequency.value = 880;
     osc.type = 'sine';
-    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.setValueAtTime(0.25, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
     osc.start(ctx.currentTime);
     osc.stop(ctx.currentTime + 0.15);
@@ -1093,8 +1085,7 @@ function drawUnionJack(ctx, cx, cy, r) {
 // ── DRAW WHEEL ─────────────────────────────────────────────────
 function getPresentStudents() {
   const c=getCourse(); if(!c) return [];
-  const ab=getAbsent();
-  return c.students.filter(s=>!ab[s.id]);
+  return c.students.filter(s=>!getAbsent()[s.id]);
 }
 function drawWheel(angle) {
   if(angle===undefined) angle=wheelAngle;
@@ -1209,8 +1200,7 @@ function renderCardsTab() {
 function initCardPool() { cardPool=[...getAllCards()].sort(()=>Math.random()-0.5); cardIndex=0; }
 function initStudentPool() {
   const c=getCourse(); if(!c) return;
-  const ab=getAbsent();
-  remainingStudents=[...c.students.filter(s=>!ab[s.id])].sort(()=>Math.random()-0.5);
+  remainingStudents=[...c.students.filter(s=>!getAbsent()[s.id])].sort(()=>Math.random()-0.5);
   doneStudents=[];
 }
 function setCardMode(mode) {
@@ -1257,8 +1247,8 @@ function updateRoundUI() {
   const donePanel=document.getElementById('doneListPanel');
   const doneListEl=document.getElementById('doneList');
   if(cardMode==='random') {
-    const c=getCourse(); const ab=getAbsent();
-    const presentCount=c?c.students.filter(s=>!ab[s.id]).length:0;
+    const c=getCourse();
+    const presentCount=c?c.students.filter(s=>!getAbsent()[s.id]).length:0;
     infoEl.style.display='block';
     infoEl.textContent=doneStudents.length===0?'🎲 '+presentCount+' Schüler':doneStudents.length+' / '+presentCount+' waren dran';
     donePanel.style.display='block'; doneListEl.innerHTML='';
@@ -1288,17 +1278,18 @@ function setTabuWordlist(key, btn) {
   document.querySelectorAll('.tabu-wordlist-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
-
 function getTeamName(i) {
   const inputs=document.querySelectorAll('.tabu-team-name-input');
   const val=inputs[i]&&inputs[i].value.trim();
-  return val || 'Team '+(i+1);
+  return val||'Team '+(i+1);
 }
 
 function startTabuGame() {
+  // Unlock audio on user gesture
+  getAudioCtx();
   const words=[...TABU_WORDS[tabuSettings.wordlist]].sort(()=>Math.random()-0.5);
   tabuGameState = {
-    teams: Array.from({length: tabuSettings.teams}, (_,i) => ({ name:getTeamName(i), scores:[], currentScore:0 })),
+    teams: Array.from({length:tabuSettings.teams}, (_,i)=>({ name:getTeamName(i), scores:[], currentScore:0 })),
     totalRounds: tabuSettings.rounds,
     currentRound: 1,
     currentTeamIndex: 0,
@@ -1340,7 +1331,6 @@ function updateTabuRoundBadge() {
 
 function showCurrentTabuWord() {
   const gs=tabuGameState;
-  // Skip already used words
   while(gs.wordIndex<gs.words.length && gs.usedWords.has(gs.words[gs.wordIndex])) gs.wordIndex++;
   if(gs.wordIndex>=gs.words.length){
     document.getElementById('tabuCurrentWord').textContent='Alle Wörter gespielt! 🎉';
@@ -1362,7 +1352,7 @@ function startTabuTimer() {
     if(!gs.running) return;
     gs.timeLeft--;
     updateTimerDisplay();
-    if(gs.timeLeft<=10 && gs.timeLeft>0) playBeep();
+    if(gs.timeLeft<=3 && gs.timeLeft>0) playBeep();
     if(gs.timeLeft<=0){ clearInterval(tabuTimerInterval); playBuzzer(); endTabuTurn(); }
   },1000);
 }
@@ -1409,13 +1399,11 @@ function endTabuTurn() {
   const gs=tabuGameState;
   gs.running=false;
   clearInterval(tabuTimerInterval);
-
   const team=gs.teams[gs.currentTeamIndex];
   const roundScore=team.currentScore;
   const nextTeamIndex=(gs.currentTeamIndex+1)%gs.teams.length;
   const isLastTeamInRound=nextTeamIndex===0;
-  const isLastRound=gs.currentRound===gs.totalRounds;
-  const isGameOver=isLastTeamInRound&&isLastRound;
+  const isGameOver=isLastTeamInRound&&gs.currentRound===gs.totalRounds;
 
   document.getElementById('tabuRoundOverlayTitle').textContent=team.name+' – Zeit ist um!';
   document.getElementById('tabuRoundOverlayScore').textContent=roundScore+(roundScore===1?' Punkt':' Punkte');
@@ -1427,37 +1415,31 @@ function endTabuTurn() {
     document.getElementById('tabuRoundOverlayBtn').onclick=showTabuFinal;
   } else {
     const nextTeam=gs.teams[nextTeamIndex];
-    const nextRound=isLastTeamInRound?gs.currentRound+1:gs.currentRound;
     document.getElementById('tabuRoundOverlayText').textContent='';
     document.getElementById('tabuRoundOverlayNext').textContent='➡️ '+nextTeam.name+' ist als nächstes dran';
     document.getElementById('tabuRoundOverlayBtn').textContent='▶️ Weiter';
     document.getElementById('tabuRoundOverlayBtn').onclick=continueTabuGame;
   }
-
   document.getElementById('tabuRoundOverlay').classList.add('show');
 }
 
 function continueTabuGame() {
   document.getElementById('tabuRoundOverlay').classList.remove('show');
   const gs=tabuGameState;
-
-  // Save score
   gs.teams[gs.currentTeamIndex].scores.push(gs.teams[gs.currentTeamIndex].currentScore);
   gs.teams[gs.currentTeamIndex].currentScore=0;
   gs.currentTeamIndex=(gs.currentTeamIndex+1)%gs.teams.length;
   if(gs.currentTeamIndex===0) gs.currentRound++;
-
   gs.log=[];
   renderTabuLog();
   updateTabuRoundBadge();
   renderTabuScoreboard();
 
-  // Advance to next fresh word BEFORE countdown
+  // Advance to next fresh word before countdown
   gs.wordIndex++;
   while(gs.wordIndex<gs.words.length && gs.usedWords.has(gs.words[gs.wordIndex])) gs.wordIndex++;
   if(gs.wordIndex<gs.words.length) gs.usedWords.add(gs.words[gs.wordIndex]);
 
-  // Show countdown then start
   const nextTeam=gs.teams[gs.currentTeamIndex];
   startCountdown(nextTeam.name, ()=>{
     showCurrentTabuWord();
@@ -1470,29 +1452,23 @@ function startCountdown(teamName, callback) {
   const numEl=document.getElementById('countdownNumber');
   const labelEl=document.getElementById('countdownTeamLabel');
   const readyEl=document.getElementById('countdownReady');
-
   labelEl.textContent=teamName+' – macht euch bereit!';
   readyEl.textContent='';
   overlay.classList.add('show');
-
   let count=3;
   function tick() {
     if(count>0) {
-      // Re-trigger animation
       numEl.style.animation='none';
-      numEl.offsetHeight; // reflow
+      numEl.offsetHeight;
       numEl.style.animation='countPop 0.5s cubic-bezier(0.34,1.56,0.64,1)';
       numEl.textContent=count;
       playBeep();
       count--;
-      setTimeout(tick, 1000);
+      setTimeout(tick,1000);
     } else {
       numEl.textContent='🎮';
       readyEl.textContent='Los!';
-      setTimeout(()=>{
-        overlay.classList.remove('show');
-        callback();
-      },700);
+      setTimeout(()=>{ overlay.classList.remove('show'); callback(); },700);
     }
   }
   tick();
@@ -1503,11 +1479,9 @@ function showTabuFinal() {
   const gs=tabuGameState;
   gs.teams[gs.currentTeamIndex].scores.push(gs.teams[gs.currentTeamIndex].currentScore);
   gs.teams[gs.currentTeamIndex].currentScore=0;
-
   const totals=gs.teams.map(t=>({ name:t.name, total:t.scores.reduce((a,b)=>a+b,0) }));
   totals.sort((a,b)=>b.total-a.total);
   const maxScore=totals[0].total;
-
   const el=document.getElementById('tabuFinalScores');
   el.innerHTML='';
   totals.forEach(t=>{
@@ -1517,7 +1491,6 @@ function showTabuFinal() {
     div.innerHTML=`<span>${isWinner?'<span class="winner-crown">👑</span>':''} ${t.name}</span><span class="pts">${t.total} Punkte</span>`;
     el.appendChild(div);
   });
-
   document.getElementById('tabuFinalOverlay').classList.add('show');
   launchConfetti();
 }
